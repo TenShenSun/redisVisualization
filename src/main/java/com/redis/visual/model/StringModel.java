@@ -5,11 +5,17 @@ package com.redis.visual.model;
  */
 public class StringModel {
 
-    /** 键值 **/
+    /**
+     * 键值
+     **/
     private String key;
-    /** value **/
+    /**
+     * value
+     **/
     private String value;
-    /** 存活时间 单位(s) **/
+    /**
+     * 存活时间 单位(s)
+     **/
     private int ttl;
 
     public String getKey() {
@@ -19,7 +25,6 @@ public class StringModel {
     public void setKey(String key) {
         this.key = key;
     }
-
 
 
     public String getValue() {

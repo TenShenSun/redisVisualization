@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 //将redis的配置信息封装成实体类
-@ConfigurationProperties(prefix="redis")
+@ConfigurationProperties(prefix = "redis")
 public class RedisConfig {
     private String host;
     private int port;
@@ -16,45 +16,59 @@ public class RedisConfig {
     private int poolMaxTotal;
     private int poolMaxIdle;
     private int poolMaxWait;//秒
+
     public String getHost() {
         return host;
     }
+
     public void setHost(String host) {
         this.host = host;
     }
+
     public int getPort() {
         return port;
     }
+
     public void setPort(int port) {
         this.port = port;
     }
+
     public int getTimeout() {
         return timeout;
     }
+
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public int getPoolMaxTotal() {
         return poolMaxTotal;
     }
+
     public void setPoolMaxTotal(int poolMaxTotal) {
         this.poolMaxTotal = poolMaxTotal;
     }
+
     public int getPoolMaxIdle() {
         return poolMaxIdle;
     }
+
     public void setPoolMaxIdle(int poolMaxIdle) {
         this.poolMaxIdle = poolMaxIdle;
     }
+
     public int getPoolMaxWait() {
         return poolMaxWait;
     }
+
     public void setPoolMaxWait(int poolMaxWait) {
         this.poolMaxWait = poolMaxWait;
     }

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class StringService {
@@ -17,20 +19,19 @@ public class StringService {
     private JedisPool jedisPool;
 
     /**
-     *
      * @param key
      * @param value
      * @return
      */
-    public Result set(String key,String value,Integer ttl){
-        if(key==null){
+    public Result set(String key, String value, Integer ttl) {
+        if (key == null) {
             return Result.error(CodeMsg.KEY_ERROR);
-        }else{
+        } else {
             Jedis jedis = jedisPool.getResource();
-            if(ttl == 0) {
+            if (ttl == 0) {
                 //直接保存
                 jedis.set(key, value);
-            }else {
+            } else {
                 //设置过期时间
                 jedis.setex(key, ttl, value);
             }
@@ -39,13 +40,11 @@ public class StringService {
     }
 
 
-
     /**
-     *
      * @param key
      * @return
      */
-    public Result del(String key){
+    public Result del(String key) {
         Jedis jedis = null;
         jedis = jedisPool.getResource();
         Result result = new Result(jedis.del(key));
@@ -53,18 +52,17 @@ public class StringService {
     }
 
     /**
-     *
      * @param key
      * @return
      */
-    public Result get(String key){
+    public Result get(String key) {
         Jedis jedis = null;
         jedis = jedisPool.getResource();
         Set<String> keys = jedis.keys(key);
-        Map<String,String> map = new HashMap<String,String>();
-        for (String k:keys
-             ) {
-            map.put(k,jedis.get(k));
+        Map<String, String> map = new HashMap<String, String>();
+        for (String k : keys
+        ) {
+            map.put(k, jedis.get(k));
         }
         Result result = new Result(map);
         return result;

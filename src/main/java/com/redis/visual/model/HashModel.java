@@ -7,13 +7,19 @@ import java.util.HashMap;
  */
 public class HashModel {
 
-    /** key **/
+    /**
+     * key
+     **/
     private String key;
 
-    /** map类型的values，用来获取redis中hash类型的field和value **/
-    private HashMap<String,String> values;
+    /**
+     * map类型的values，用来获取redis中hash类型的field和value
+     **/
+    private HashMap<String, String> values;
 
-    /** 存活时间 单位(s) **/
+    /**
+     * 存活时间 单位(s)
+     **/
     private int ttl;
 
 
