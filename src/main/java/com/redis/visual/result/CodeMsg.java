@@ -22,6 +22,10 @@ public class CodeMsg {
     public static CodeMsg KEY_NEWKEY_EQUAL_ERROR=new CodeMsg(500300,"key和newkey不能相同");
 
     public static CodeMsg NO_SUCH_KEY_ERROR=new CodeMsg(500400,"不存在对应的key");
+
+    public static CodeMsg NO_SUCH_TYPE_ERROR=new CodeMsg(500500,"不存在对应的类型");
+
+    public static CodeMsg NOT_SUIT_TYPE_ERROR=new CodeMsg(500600,"数据类型不符");
     public CodeMsg() {
     }
 

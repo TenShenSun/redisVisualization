@@ -65,9 +65,10 @@ public class RedisService {
     }
 
     /**
-     * 重命名一个key，如果key或者value不存在时，返回error。
-     * 如果key和value相同，返回error。
-     *
+     * 重命名一个key，如果key或者value不存在时，返回error。<br/>
+     * 如果key和value相同，返回error。<br/>
+     * 如果key不存在数据库中，返回error。<br/>
+     * 操作成功返回success。
      * @param key
      * @param newkey
      * @return
@@ -91,11 +92,29 @@ public class RedisService {
     }
 
     /**
+     * 根据名称和类型约束选取数据，什么类型都能取
+     * 两个参数，第一个是对key名称的约束，第二个是对key类型的约束，<br/>
+     * key支持glob风格通配符格式：<br/>
+     * ？　　匹配一个字符<br/>
+     * *　　 匹配任意字符<br/>
+     * []      匹配中括号内的任一字符，可以用 - 来表示范围<br/>
+     * \x     匹配字符x，用于转义符号<br/>
+     *  type可以为*或者类型的字符串。
+     * 返回结果在data中以一个hashmap的形式出现
      * @param key
      * @param type
      * @return
      */
     public Result get(String key, String type) {
+        if (key==null){
+            return Result.error(CodeMsg.KEY_ERROR);
+        }
+        if ("*".equals(type)||"string".equals(type)||"list".equals(type)||"set".equals(type)
+                ||"zset".equals(type)||"hash".equals(type)){
+
+        }else {
+            return Result.error(CodeMsg.NO_SUCH_TYPE_ERROR);
+        }
         Boolean isAll = type.equals("*");
         Jedis jedis = null;
         jedis = jedisPool.getResource();
