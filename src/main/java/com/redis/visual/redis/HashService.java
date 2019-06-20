@@ -12,11 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
-public class HashService {
-
-    @Autowired
-    private JedisPool jedisPool;
-
+public class HashService extends RedisService {
 
     /**
      * 设置一个值

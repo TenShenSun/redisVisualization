@@ -3,44 +3,49 @@ package com.redis.visual.result;
 
 public class Result<T> {
 
-    /** 代码 **/
+    /**
+     * 代码
+     **/
     private int code;
-    /** 信息 **/
+    /**
+     * 信息
+     **/
     private String msg;
-    /** 数据 **/
+    /**
+     * 数据
+     **/
     private T data;
 
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return this.code == CodeMsg.SUCCESS.getCode();
     }
 
-    public static <T> Result<T> success(T data){
+    public static <T> Result<T> success(T data) {
         return new Result<T>(data);
     }
 
-    public Result(T data){
+    public Result(T data) {
         this.code = CodeMsg.SUCCESS.getCode();
         this.msg = CodeMsg.SUCCESS.getMsg();
         this.data = data;
     }
 
-    public static <T> Result<T>  error(CodeMsg codeMsg){
+    public static <T> Result<T> error(CodeMsg codeMsg) {
         return new Result<T>(codeMsg);
     }
 
-    private Result(CodeMsg codeMsg){
-        if(codeMsg != null){
+    private Result(CodeMsg codeMsg) {
+        if (codeMsg != null) {
             this.code = codeMsg.getCode();
             this.msg = codeMsg.getMsg();
         }
     }
 
-    private Result(int code,String msg){
+    private Result(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
-
 
 
     public int getCode() {

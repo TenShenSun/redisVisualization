@@ -3,21 +3,15 @@ package com.redis.visual.redis;
 
 import com.redis.visual.result.CodeMsg;
 import com.redis.visual.result.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 @Service
-public class StringService {
-
-    @Autowired
-    private JedisPool jedisPool;
-
+public class StringService extends RedisService {
     /**
      * @param key
      * @param value
@@ -39,34 +33,6 @@ public class StringService {
         }
     }
 
-
-    /**
-     * @param key
-     * @return
-     */
-    public Result del(String key) {
-        Jedis jedis = null;
-        jedis = jedisPool.getResource();
-        Result result = new Result(jedis.del(key));
-        return result;
-    }
-
-    /**
-     * @param key
-     * @return
-     */
-    public Result get(String key) {
-        Jedis jedis = null;
-        jedis = jedisPool.getResource();
-        Set<String> keys = jedis.keys(key);
-        Map<String, String> map = new HashMap<String, String>();
-        for (String k : keys
-        ) {
-            map.put(k, jedis.get(k));
-        }
-        Result result = new Result(map);
-        return result;
-    }
 
 
 }

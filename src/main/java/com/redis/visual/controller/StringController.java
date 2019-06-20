@@ -44,7 +44,8 @@ public class StringController {
      */
     @RequestMapping(value = "/string/{key}", method = RequestMethod.GET)
     public Result get(@PathVariable String key) {
-        return stringService.get(key);
+//        return stringService.get(key);
+        return new Result("nulllllllllllllllllllll");
     }
 
 }
