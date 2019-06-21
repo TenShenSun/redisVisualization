@@ -74,18 +74,4 @@ public class HashService extends RedisService {
         }
         return Result.success(CodeMsg.SUCCESS);
     }
-
-    /**
-     * 获取一个hash的key值对应的所有的field和value值
-     *
-     * @param key
-     * @return
-     */
-    public Result hgetall(String key) {
-        Jedis jedis = jedisPool.getResource();
-        Map<String, String> values = jedis.hgetAll(key);
-        return new Result(values);
-
-    }
-
 }

@@ -3,6 +3,7 @@ package com.redis.visual.redis;
 
 import com.redis.visual.result.CodeMsg;
 import com.redis.visual.result.Result;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
@@ -145,6 +146,27 @@ public class ListService extends RedisService {
         } else {
             Jedis jedis = jedisPool.getResource();
             jedis.lset(key, index, value);
+            return Result.success(CodeMsg.SUCCESS);
+        }
+    }
+
+    /**
+     * 根据参数 count 的值，移除列表中与参数 value 相等的元素。
+     * count 的值可以是以下几种：
+     * count > 0 : 从表头开始向表尾搜索，移除与 value 相等的元素，数量为 count 。
+     * count < 0 : 从表尾开始向表头搜索，移除与 value 相等的元素，数量为 count 的绝对值。
+     * count = 0 : 移除表中所有与 value 相等的值。
+     * @param key
+     * @param num
+     * @param value
+     * @return
+     */
+    public Result lrem(String key,int num,String value){
+        if (key==null){
+            return Result.error(CodeMsg.KEY_ERROR);
+        }else {
+            Jedis jedis=jedisPool.getResource();
+            jedis.lrem(key,num,value);
             return Result.success(CodeMsg.SUCCESS);
         }
     }

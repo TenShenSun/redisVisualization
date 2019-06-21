@@ -19,7 +19,7 @@ public class StringController {
      * @param stringModel
      * @return
      */
-    @RequestMapping(value = "/string", method = RequestMethod.PUT)
+    @RequestMapping(value = "/string", method = RequestMethod.POST)
     public Result add(@RequestBody StringModel stringModel) {
         return stringService.set(stringModel.getKey(), stringModel.getValue(), stringModel.getTtl());
     }
@@ -44,8 +44,7 @@ public class StringController {
      */
     @RequestMapping(value = "/string/{key}", method = RequestMethod.GET)
     public Result get(@PathVariable String key) {
-//        return stringService.get(key);
-        return new Result("nulllllllllllllllllllll");
+        return stringService.get(key,"string");
     }
 
 }

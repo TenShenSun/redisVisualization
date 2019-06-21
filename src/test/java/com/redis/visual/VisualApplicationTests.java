@@ -37,8 +37,8 @@ public class VisualApplicationTests {
 //        Result result=redisService.del("zxc");
 //        Result result3=redisService.del("aha");
 //        Result result=redisService.type("*");
-        Result result = redisService.rename("zxc", "qwe");
-        Result result2 = redisService.rename("ahalo", "aha");
+        /*Result result = redisService.rename("zxc", "qwe");
+        Result result2 = redisService.rename("ahalo", "aha");*/
     }
 
     @Test

@@ -19,7 +19,7 @@ public class HashController {
      * @param hashModel
      * @return
      */
-    @RequestMapping(value = "/hash", method = RequestMethod.PUT)
+    @RequestMapping(value = "/hash", method = RequestMethod.POST)
     public Result addHash(@RequestBody HashModel hashModel) {
         //key不能为空
         if (hashModel.getKey() == null) {
@@ -42,7 +42,7 @@ public class HashController {
 
     @RequestMapping(value = "/hash/delKey/{key}", method = RequestMethod.DELETE)
     public Result delHashKey(@PathVariable String key) {
-        return hashService.hdelKey(key);
+        return hashService.del(key);
     }
 
     /**
@@ -65,7 +65,7 @@ public class HashController {
      */
     @RequestMapping(value = "/hash/{key}", method = RequestMethod.GET)
     public Result getHash(@PathVariable String key) {
-        return Result.success(hashService.hgetall(key));
+        return Result.success(hashService.get(key,"hash"));
     }
 
 
