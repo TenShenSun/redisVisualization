@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class VisualApplicationTests {
@@ -69,7 +71,11 @@ public class VisualApplicationTests {
 
     @Test
     public void zSetTest() {
-
+        Result result1 = redisService.get("*", "zset");
+        HashMap<String,Double> hashMap=new HashMap();
+        hashMap.put("aa",123.0);
+        Result result=zSetService.zadd("team",hashMap);
+        Result result2 = redisService.get("*", "zset");
     }
 
 }
